@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description" content="Personal website" />
+	<title>projects</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="media/josegp.png">
+</head>
+
+<body>
+    <div class="terminal">
+        <div class="hero-row">
+        <header class="ascii-header">
+            <pre class="ascii-art">
+ ____  ____   __     __  ____  ___  ____  ____ 
+(  _ \(  _ \ /  \  _(  )(  __)/ __)(_  _)/ ___)
+ ) __/ )   /(  O )/ \) \ ) _)( (__   )(  \___ \
+(__)  (__\_) \__/ \____/(____)\___) (__) (____/
+
+            </pre>
+        </header>
+        <div class="hero-image-wrap">
+            <img src="media/posada1.png" alt="Calavera artwork" class="hero-image" />
+        </div>
+        </div>
+
+        <div class="project-nodes">
+            <button class="node project-node" type="button" data-project-title="Dementia Speech Biomarkers" data-project-desc="Speech feature extraction and ML modeling to study dementia-related biomarkers." data-project-url="">
+                Dementia Speech Biomarkers
+            </button>
+            <button class="node project-node" type="button" data-project-title="CTA Train Tracker" data-project-desc="Transit tracking tool for monitoring train status and arrival predictions in real time." data-project-url="https://github.com/tenochca/ctaTrainTracker">
+                CTA Train Tracker
+            </button>
+            <button class="node project-node" type="button" data-project-title="Electricity Market Analysis" data-project-desc="Exploratory analysis of electricity market data with emphasis on pricing and demand patterns." data-project-url="https://github.com/tenochca/electricity-sql-market-analysis">
+                Electricity Market Analysis
+            </button>
+            <button class="node project-node" type="button" data-project-title="Chicago House Price Predictor" data-project-desc="Predictive modeling project for estimating Chicago housing prices from structured features." data-project-url="https://github.com/tenochca/linearregression_houseprice">
+                Chicago House Price Predictor
+            </button>
+        </div>
+
+        <div id="project-modal" class="project-modal" hidden>
+            <div class="project-modal__panel" role="dialog" aria-modal="true" aria-labelledby="project-modal-title">
+                <div class="project-modal__header">
+                    <h2 id="project-modal-title" class="project-modal__title"></h2>
+                    <button id="project-modal-close" class="project-modal__close" type="button" aria-label="Close project details">X</button>
+                </div>
+                <p id="project-modal-description" class="project-modal__description"></p>
+                <a id="project-modal-link" class="node project-modal__link" href="#" target="_blank" rel="noopener noreferrer" hidden>
+                    View Repository
+                </a>
+            </div>
+        </div>
+    </div>
+
+<script src="scripts/projects.js" defer></script>
+</body>
+</html>
