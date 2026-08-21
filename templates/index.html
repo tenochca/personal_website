@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Personal website" />
 	<title>tenochca</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
     <link rel="icon" type="image/png" href="media/josegp.png">
 </head>
 <body>
@@ -14,15 +14,15 @@
         <div class="hero-row">
 	    <header class="ascii-header">
 		    <pre class="ascii-art">
- ____  ____  __ _   __    ___  _  _   ___   __  
-(_  _)(  __)(  ( \ /  \  / __)/ )( \ / __) / _\  
+ ____  ____  __ _   __    ___  _  _   ___   __
+(_  _)(  __)(  ( \ /  \  / __)/ )( \ / __) / _\
   )(   ) _) /    /(  O )( (__ ) __ (( (__ /    \
  (__) (____)\_)__) \__/  \___)\_)(_/ \___)\_/\_/
-        
+
 		    </pre>
 	    </header>
         <div class="hero-image-wrap">
-            <img src="media/posada2.png" alt="Profile image" class="hero-image" />
+            <img src="{{ url_for('static', path='media/posada2.png') }}" alt="Profile image" class="hero-image" />
         </div>
         </div>
 
@@ -30,13 +30,13 @@
 
 	    <main>
 		    <nav class="nav">
-                <a href="about.html" class="node">about</a>
-                <a href="logs.html" class="node"> logs</a>
-                <a href="projects.html" class="node"> projects</a>
+                <a href='/about' class="node">about</a>
+                <a href="/logs" class="node"> logs</a>
+                <a href="/projects" class="node"> projects</a>
             </nav>
 	    </main>
 
     </div>
-<script src="scripts/script.js"></script>
+<script src="{{ url_for('static', path='scripts/script.js') }}"></script>
 </body>
 </html>

@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta name="description" content="Personal website" />
 	<title>tenochca</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
     <link rel="icon" type="image/png" href="media/josegp.png">
 </head>
 
@@ -14,14 +14,14 @@
         <div class="hero-row">
     <header class="ascii-header">
         <pre class="ascii-art">
- __     __    ___  ____ 
+ __     __    ___  ____
 (  )   /  \  / __)/ ___)
 / (_/\(  O )( (_ \\___ \
-\____/ \__/  \___/(____/            
+\____/ \__/  \___/(____/
         </pre>
     </header>
     <div class="hero-image-wrap">
-        <img src="media/posada4.png" class="hero-image"/>
+        <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
     </div>
         </div>
     </div>
