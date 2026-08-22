@@ -1,14 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta name="description" content="Personal website" />
-	<title>tenochca</title>
-    <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
-    <link rel="icon" type="image/png" href="media/josegp.png">
-</head>
-
+{% include "base.html" %}
 <body>
     <div class="terminal">
         <div class="hero-row">
@@ -24,5 +14,13 @@
         <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
     </div>
         </div>
+        <main>
+            <a href="/logs/create-log" class="node">create log</a>
+            <div id="log-container">
+                {% for log in log_messages %}
+                    <p>{{ log }}</p>
+                {% endfor %}
+            </div>
+        </main>
     </div>
 </body>

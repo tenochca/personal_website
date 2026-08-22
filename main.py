@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
@@ -7,6 +7,8 @@ app = FastAPI()
 
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
+
+log_messages: list[str] = []
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
@@ -21,5 +23,12 @@ def projects(request: Request):
     return templates.TemplateResponse(request, 'projects.html')
 
 @app.get("/logs", response_class=HTMLResponse)
-def logs(request: Request):
-    return templates.TemplateResponse(request, 'logs.html')
+def logs_get(request: Request):
+    context = {"log_messages": log_messages}
+    return templates.TemplateResponse(request, "logs.html", context)
+
+@app.post('/logs', response_class=HTMLResponse)
+async def logs_post(request: Request, log_message: str = Form(...)):
+    #global log_messages
+    log_messages.append(log_message)
+    return templates.TemplateResponse(request, "logs.html", {"log_messages": log_messages})
