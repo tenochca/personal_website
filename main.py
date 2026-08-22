@@ -32,3 +32,7 @@ async def logs_post(request: Request, log_message: str = Form(...)):
     #global log_messages
     log_messages.append(log_message)
     return templates.TemplateResponse(request, "logs.html", {"log_messages": log_messages})
+
+@app.get("/logs/create-log", response_class=HTMLResponse)
+def create_log(request: Request):
+    return templates.TemplateResponse(request, "create-log.html")
