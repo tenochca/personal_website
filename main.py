@@ -1,3 +1,7 @@
+import uuid
+from dataclasses import dataclass, field
+from datetime import datetime
+
 from fastapi import FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
@@ -8,7 +12,13 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-log_messages: list[str] = []
+@dataclass
+class LogEntry:
+    id: str = field(default_factory=lambda: uuid.uuid4().hex)
+    message: str = ""
+    created_at: datetime = field(default_factory=datetime.utcnow)
+
+log_messages: list[LogEntry] = []
 
 @app.get("/", response_class=HTMLResponse)
 def home(request: Request):
@@ -29,7 +39,8 @@ def logs_get(request: Request):
 
 @app.post('/logs', response_class=HTMLResponse)
 async def logs_post(request: Request, log_message: str = Form(...)):
-    log_messages.append(log_message)
+    new_message = LogEntry(message=log_message)
+    log_messages.append(new_message)
     return templates.TemplateResponse(request, "logs.html", {"log_messages": log_messages})
 
 @app.get("/logs/new", response_class=HTMLResponse)
