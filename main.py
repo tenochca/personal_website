@@ -1,15 +1,11 @@
-import uuid
-from dataclasses import dataclass, field
-from datetime import datetime
-
-from fastapi import FastAPI, Form, Request, Depends
+from fastapi import Depends, FastAPI, Form, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
-from sqlmodel import Session, select, desc, asc
+from sqlmodel import Session, desc, select
 
+from database import create_db_and_tables, get_session
 from models import LogEntry
-from database import get_session, create_db_and_tables
 
 app = FastAPI()
 

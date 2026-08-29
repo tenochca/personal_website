@@ -10,17 +10,18 @@
 \____/ \__/  \___/(____/
         </pre>
     </header>
+    <a href="/logs/new" class="node">create log</a>
     <div class="hero-image-wrap">
         <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
     </div>
         </div>
         <main>
-            <a href="/logs/new" class="node">create log</a>
-            <div id="log-container">
                 {% for log in log_messages %}
-                    <p>{{ log }}</p>
+                    <div id="log-container" class="node">
+                        <p>{{ log.message }}</p>
+                        <p>{{  log.created_at.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                    </div>
                 {% endfor %}
-            </div>
         </main>
     </div>
 </body>
