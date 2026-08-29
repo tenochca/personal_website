@@ -1,11 +1,15 @@
-from fastapi import Depends, FastAPI, Form, Request
-from fastapi.responses import HTMLResponse
+from contextlib import asynccontextmanager
+
+from fastapi import Depends, FastAPI, Form, HTTPException, Request
+from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, desc, select
-from contextlib import asynccontextmanager
+from starlette import status
+
 from database import create_db_and_tables, get_session
 from models import LogEntry
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -40,10 +44,20 @@ async def logs_post(request: Request, log_message: str = Form(..., min_length=1,
     session.add(entry)
     session.commit()
     session.refresh(entry)
-
-    logs = session.exec(select(LogEntry).order_by(desc(LogEntry.created_at))).all()
-    return templates.TemplateResponse(request, 'logs.html', {'log_messages' : logs})
+    return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)
 
 @app.get("/logs/new", response_class=HTMLResponse)
 def log_new(request: Request):
     return templates.TemplateResponse(request, "create-log.html")
+
+@app.delete("/logs/{id}")
+def logs_delete(id: str, session: Session = Depends(get_session)):
+    log = session.get(LogEntry, id)
+    print("LOG identified succesfully")
+    if not log:
+        raise HTTPException(status_code=404, detail="Log not found")
+    session.delete(log)
+    print("LOG deleted succesfully")
+    session.commit()
+    print("COMMITED to session")
+    return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)

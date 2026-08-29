@@ -19,7 +19,8 @@
                 {% for log in log_messages %}
                     <div id="log-container" class="node">
                         <p>{{ log.message }}</p>
-                        <p>{{  log.created_at.strftime('%B %d, %Y at %I:%M %p') }}</p>
+                        <p>{{  log.created_at }}</p>
+                        <p>{{ log.id }}</p>
                     </div>
                 {% endfor %}
         </main>
