@@ -15,6 +15,13 @@
         <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
     </div>
         </div>
+   	    <main>
+		    <nav class="nav">
+                   <a href='/about' class="node">about</a>
+                   <a href="/logs" class="node"> logs</a>
+                   <a href="/projects" class="node"> projects</a>
+               </nav>
+	    </main>
         <main>
                 {% for log in log_messages %}
                     <div id="log-container" class="node">
