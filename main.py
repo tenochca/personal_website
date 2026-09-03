@@ -59,9 +59,9 @@ def log_delete(id: str, session: Session = Depends(get_session)):
     session.commit()
     return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)
 
-@app.get("/logs/{id}")
-def log_view(id: str, session: Session =Depends(get_session)):
+@app.get("/logs/{id}", response_class=HTMLResponse)
+def log_view(request: Request, id: str, session: Session = Depends(get_session)):
     log = session.get(LogEntry, id)
     if not log:
         raise HTTPException(status_code=404, detail="Log not found")
-    return log
+    return templates.TemplateResponse(request, "view-log.html", {'log' : log})

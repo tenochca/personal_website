@@ -25,7 +25,7 @@
         <main>
                 {% for log in log_messages %}
                     <div id="log-{{ log.id }}" class="node">
-                        <p>{{ log.message }}</p>
+                        <a href="logs/{{ log.id }}">{{ log.message }}</a>
                         <p>{{  log.created_at }}</p>
                         <p>{{ log.id }}</p>
                         <button onclick="deleteLog('{{ log.id }}')">Delete</button>
