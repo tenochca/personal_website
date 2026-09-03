@@ -51,13 +51,17 @@ def log_new(request: Request):
     return templates.TemplateResponse(request, "create-log.html")
 
 @app.delete("/logs/{id}")
-def logs_delete(id: str, session: Session = Depends(get_session)):
+def log_delete(id: str, session: Session = Depends(get_session)):
     log = session.get(LogEntry, id)
-    print("LOG identified succesfully")
     if not log:
         raise HTTPException(status_code=404, detail="Log not found")
     session.delete(log)
-    print("LOG deleted succesfully")
     session.commit()
-    print("COMMITED to session")
     return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)
+
+@app.get("/logs/{id}")
+def log_view(id: str, session: Session =Depends(get_session)):
+    log = session.get(LogEntry, id)
+    if not log:
+        raise HTTPException(status_code=404, detail="Log not found")
+    return log

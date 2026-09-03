@@ -24,7 +24,7 @@
 	    </main>
         <main>
                 {% for log in log_messages %}
-                    <div id="log-container" class="node">
+                    <div id="log-{{ log.id }}" class="node">
                         <p>{{ log.message }}</p>
                         <p>{{  log.created_at }}</p>
                         <p>{{ log.id }}</p>
