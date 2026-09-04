@@ -22,32 +22,11 @@
                    <a href="/projects" class="node"> projects</a>
                </nav>
 	    </main>
-        <main>
                 {% for log in log_messages %}
-                    <div id="log-{{ log.id }}" class="node">
-                        <a href="logs/{{ log.id }}">{{ log.message }}</a>
-                        <p>{{  log.created_at }}</p>
-                        <p>{{ log.id }}</p>
-                        <button onclick="deleteLog('{{ log.id }}')">Delete</button>
+                    <div id="log-{{ log.id }}" class="project-nodes"> #TODO: Replace class with custom for log nodes
+                        <a href="logs/{{ log.id }}" class="node"> {{  log.created_at }} {{log.id}}</a>
                     </div>
                 {% endfor %}
-        </main>
     </div>
-
-<script>
-async function deleteLog(logId) {
-    if (!confirm("Delete this log?")) return;
-
-    const response = await fetch(`/logs/${logId}`, {
-        method: "DELETE",
-    });
-
-    if (response.ok) {
-        document.getElementById(`log-${logId}`).remove();
-    } else {
-        alert("Failed to delete log.");
-    }
-}
-</script>
 
 </body>

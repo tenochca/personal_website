@@ -57,7 +57,7 @@ def log_delete(id: str, session: Session = Depends(get_session)):
         raise HTTPException(status_code=404, detail="Log not found")
     session.delete(log)
     session.commit()
-    return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)
+    return {"ok": True}
 
 @app.get("/logs/{id}", response_class=HTMLResponse)
 def log_view(request: Request, id: str, session: Session = Depends(get_session)):
