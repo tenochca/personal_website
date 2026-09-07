@@ -39,8 +39,8 @@ def logs_get(request: Request, session: Session = Depends(get_session)):
     return templates.TemplateResponse(request, "logs.html", {"log_messages" : logs})
 
 @app.post('/logs', response_class=HTMLResponse)
-async def logs_post(request: Request, log_message: str = Form(..., min_length=1, max_length=5000), session: Session = Depends(get_session)):
-    entry = LogEntry(message=log_message)
+async def logs_post(request: Request, log_title:str = Form(..., min_length=1, max_length=2000), log_message: str = Form(..., min_length=1, max_length=5000), session: Session = Depends(get_session)):
+    entry = LogEntry(title=log_title, message=log_message)
     session.add(entry)
     session.commit()
     session.refresh(entry)

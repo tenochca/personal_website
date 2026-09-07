@@ -21,7 +21,7 @@
 			<main>
 				<div class="project-nodes">
                     {% for log in log_messages %}
-                        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.created_at }} {{log.id}}</a>
+                        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.created_at }} {{log.title}}</a>
                     {% endfor %}
 				</div>
 			</main>
