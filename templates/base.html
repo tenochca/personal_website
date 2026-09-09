@@ -1,3 +1,5 @@
+{% block head %}
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,3 +10,26 @@
     <link rel="stylesheet" href="{{ url_for('static', path='style.css') }}">
     <link rel="icon" type="image/png" href="media/josegp.png">
 </head>
+
+{% endblock %}
+
+<body>
+    <div class="terminal">
+        <div class="hero-row">
+            <header class="ascii-header">
+                <pre class="ascii-art">
+                    {% block ascii_art %}{% endblock %}
+                </pre>
+            </header>
+
+            <div class="hero-image-wrap">
+                {% block image_wrap %}{% endblock %}
+            </div>
+
+        </div>
+
+
+
+{% block content %}{% endblock %}
+    </div>
+</body>

@@ -25,6 +25,10 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 def home(request: Request):
     return templates.TemplateResponse(request, "index.html")
 
+@app.get("/test", response_class=HTMLResponse)
+def test(request: Request):
+    return templates.TemplateResponse(request, "test.html")
+
 @app.get("/about", response_class=HTMLResponse)
 def about(request: Request):
     return templates.TemplateResponse(request, "about.html")
