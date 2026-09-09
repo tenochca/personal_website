@@ -28,8 +28,14 @@
 
         </div>
 
+   	    <div>
+            {% include "navbar.html" %}
+	    </div>
 
-
-{% block content %}{% endblock %}
+		<main>
+		{% block content %}{% endblock %}
+		</main>
     </div>
+    {% block script %}{% endblock %}
 </body>
+</html>

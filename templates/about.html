@@ -1,24 +1,18 @@
-{% include "base.html" %}
-<body>
-    <div class="terminal">
-        <div class="hero-row">
-            <div class="ascii-header">
-                <pre class="ascii-art">
+{% extends "base.html" %}
+
+{% block ascii_art %}
   __   ____   __   _  _  ____
  / _\ (  _ \ /  \ / )( \(_  _)
 /    \ ) _ ((  O )) \/ (  )(
 \_/\_/(____/ \__/ \____/ (__)
-                </pre>
-            </div>
-            <div class="hero-image-wrap">
-                <img src="{{ url_for('static', path='media/posada1.png') }}" class="hero-image" />
-            </div>
-        </div>
 
-   	    <div>
-            {% include "navbar.html" %}
-	    </div>
-<main>
+{% endblock %}
+
+{% block image_wrap %}
+<img src="{{ url_for('static', path='media/posada1.png') }}" class="hero-image" />
+{% endblock %}
+
+{% block content %}
         <div class="container">
             <div class="column">
             <p>
@@ -45,6 +39,4 @@
             </div>
 
         </div>
-</main>
-    </div>
-</body>
+{% endblock %}

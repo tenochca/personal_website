@@ -1,13 +1,11 @@
-{% include "base.html" %}
+{% extends "base.html" %}
 
-<body>
-    <div class="terminal">
-    <main>
-        <p>{{ log.message }}</p>
-        <button onclick="deleteLog('{{ log.id }}')">Delete</button>
-    </main>
-    </div>
+{% block content %}
+<p>{{ log.message }}</p>
+<button onclick="deleteLog('{{ log.id }}')">Delete</button>
+{% endblock %}
 
+{% block script %}
     <script>
     async function deleteLog(logId) {
         if (!confirm("Delete this log?")) return;
@@ -23,5 +21,4 @@
         }
     }
     </script>
-
-</body>
+{% endblock %}

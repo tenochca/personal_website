@@ -1,30 +1,22 @@
-{% include "base.html" %}
-<body>
-    <div class="terminal">
-        <div class="hero-row">
-    <header class="ascii-header">
-        <pre class="ascii-art">
+{% extends "base.html" %}
+
+{% block ascii_art %}
  __     __    ___  ____
 (  )   /  \  / __)/ ___)
 / (_/\(  O )( (_ \\___ \
 \____/ \__/  \___/(____/
-        </pre>
-    </header>
-    <a href="/logs/new" class="node">create log</a>
-    <div class="hero-image-wrap">
-        <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
-    </div>
-        </div>
-   	    <div>
-            {% include "navbar.html" %}
-	    </div>
-			<main>
-				<div class="project-nodes">
-                    {% for log in log_messages %}
-                        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.created_at }} {{log.title}}</a>
-                    {% endfor %}
-				</div>
-			</main>
-    </div>
 
-</body>
+{% endblock %}
+
+{% block image_wrap %}
+<img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
+{% endblock %}
+
+{% block content %}
+<div class="project-nodes">
+    <a href="/logs/new" class="node">create log</a>
+    {% for log in log_messages %}
+        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.created_at }} {{log.title}}</a>
+    {% endfor %}
+</div>
+{% endblock %}
