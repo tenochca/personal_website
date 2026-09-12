@@ -8,7 +8,7 @@ from sqlmodel import Session, desc, select
 from starlette import status
 
 from database import create_db_and_tables, get_session
-from models import LogEntry
+from models import LogEntry, UpdateLogEntry
 
 
 @asynccontextmanager
@@ -69,3 +69,16 @@ def log_view(request: Request, id: str, session: Session = Depends(get_session))
     if not log:
         raise HTTPException(status_code=404, detail="Log not found")
     return templates.TemplateResponse(request, "view-log.html", {'log' : log})
+
+@app.patch("/logs/{id}", response_model = LogEntry)
+def update_log(id: str, log: UpdateLogEntry, session: Session = Depends(get_session)):
+    log_db = session.get(LogEntry, id)
+    if not log_db:
+        raise HTTPException(status_code=404, detail="Hero not found")
+    log_data = log.model_dump(exclude_unset=True)
+    log_db.sqlmodel_update(log_data)
+    session.add(log_db)
+    session.commit()
+    session.refresh(log_db)
+    RedirectResponse(url=f"/logs{id}", status_code=status.HTTP_303_SEE_OTHER)
+    return log_db

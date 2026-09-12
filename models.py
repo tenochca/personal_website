@@ -9,3 +9,7 @@ class LogEntry(SQLModel, table=True):
     title: str
     message: str
     created_at: datetime = Field(default_factory=datetime.now)
+
+class UpdateLogEntry(SQLModel):
+    title: str | None = None
+    message: str | None = None
