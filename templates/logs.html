@@ -12,6 +12,10 @@
 <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
 {% endblock %}
 
+{% block nav %}
+    {% include "navbar.html" %}
+{% endblock %}
+
 {% block content %}
 <div class="project-nodes">
     <a href="/logs/new" class="node">create log</a>
