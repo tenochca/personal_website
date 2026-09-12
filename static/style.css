@@ -312,3 +312,10 @@ body {
   outline: 1px dashed var(--cyber-blue);
   outline-offset: 2px;
 }
+
+.ascii-line {
+    white-space: nowrap;
+    overflow: hidden;
+    width: 100%;
+    font-family: Consolas, "Courier New", monospace;
+}
