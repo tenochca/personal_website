@@ -50,7 +50,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function navigateTo(page) {
-    window.location.href = page;
+    window.location.replace(page);
   }
 
   function openGithub() {
@@ -111,22 +111,22 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       if (joinedArg === "about") {
-        navigateTo("about.html");
+        navigateTo("about");
         return;
       }
 
       if (joinedArg === "projects") {
-        navigateTo("projects.html");
+        navigateTo("projects");
         return;
       }
 
       if (joinedArg === "logs") {
-        navigateTo("logs.html");
+        navigateTo("logs");
         return;
       }
 
       if (joinedArg === "home" || joinedArg === "~" || joinedArg === "/") {
-        navigateTo("index.html");
+        navigateTo("index");
         return;
       }
 
