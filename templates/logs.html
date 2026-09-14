@@ -9,7 +9,9 @@
 {% endblock %}
 
 {% block image_wrap %}
-<img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
+<a href="/logs/new">
+    <img src="{{ url_for('static', path='media/posada4.png') }}" class="hero-image"/>
+</a>
 {% endblock %}
 
 {% block nav %}
@@ -18,7 +20,7 @@
 
 {% block content %}
 <div class="project-nodes">
-    <a href="/logs/new" class="node">create log</a>
+    <!--<a href="/logs/new" class="node">create log</a>-->
     {% for log in log_messages %}
         <a href="logs/{{ log.id }}" class="node project-node"> {{  log.created_at }} {{log.title}}</a>
     {% endfor %}
