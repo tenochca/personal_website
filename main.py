@@ -7,6 +7,7 @@ from fastapi.templating import Jinja2Templates
 from sqlmodel import Session, desc, select
 from starlette import status
 
+from auth import get_current_user
 from database import create_db_and_tables, get_session
 from models import LogEntry, UpdateLogEntry
 
@@ -27,11 +28,6 @@ def home(request: Request):
     "Renders the home page"
     return templates.TemplateResponse(request, "index.html")
 
-@app.get("/test", response_class=HTMLResponse)
-def test(request: Request):
-    "Renders the test page"
-    return templates.TemplateResponse(request, "test.html")
-
 @app.get("/about", response_class=HTMLResponse)
 def about(request: Request):
     "Renders the about page"
@@ -49,7 +45,10 @@ def logs_get(request: Request, session: Session = Depends(get_session)):
     return templates.TemplateResponse(request, "logs.html", {"log_messages" : logs})
 
 @app.post('/logs', response_class=HTMLResponse)
-async def logs_post(request: Request, log_title:str = Form(..., min_length=1, max_length=2000), log_message: str = Form(..., min_length=1, max_length=5000), session: Session = Depends(get_session)):
+async def logs_post(request: Request, log_title:str = Form(..., min_length=1, max_length=2000),
+                    log_message: str = Form(..., min_length=1, max_length=5000),
+                    session: Session = Depends(get_session),
+                    username: str = Depends(get_current_user)):
     "Creates a new log entry"
     entry = LogEntry(title=log_title, message=log_message)
     session.add(entry)
@@ -58,12 +57,12 @@ async def logs_post(request: Request, log_title:str = Form(..., min_length=1, ma
     return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)
 
 @app.get("/logs/new", response_class=HTMLResponse)
-def log_new(request: Request):
+def log_new(request: Request, username: str = Depends(get_current_user)):
     "Renders the form to create a new log entry"
     return templates.TemplateResponse(request, "create-log.html")
 
 @app.delete("/logs/{id}")
-def log_delete(id: str, session: Session = Depends(get_session)):
+def log_delete(id: str, session: Session = Depends(get_session), username: str = Depends(get_current_user)):
     "Deletes a log entry by its ID"
     log = session.get(LogEntry, id)
     if not log:
@@ -81,7 +80,7 @@ def log_view(request: Request, id: str, session: Session = Depends(get_session))
     return templates.TemplateResponse(request, "view-log.html", {'log' : log})
 
 @app.patch("/logs/{id}", response_model = LogEntry)
-def update_log(id: str, log: UpdateLogEntry, session: Session = Depends(get_session)):
+def update_log(id: str, log: UpdateLogEntry, session: Session = Depends(get_session), username: str = Depends(get_current_user)):
     "Update a specific log entry"
     log_db = session.get(LogEntry, id)
     if not log_db:

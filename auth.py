@@ -10,6 +10,9 @@ ADMIN_USERNAME = os.environ["ADMIN_USERNAME"]
 ADMIN_PASSWORD = os.environ["ADMIN_PASSWORD"]
 
 def get_current_user(credentials: HTTPBasicCredentials = Depends(security)):
+    print(credentials.username)
+    print(credentials.password)
+    print(f"ACTUAL\n {ADMIN_USERNAME}\n{ADMIN_PASSWORD}")
     correct_username = secrets.compare_digest(credentials.username, ADMIN_USERNAME)
     correct_password = secrets.compare_digest(credentials.password, ADMIN_PASSWORD)
 
