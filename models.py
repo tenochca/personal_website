@@ -10,6 +10,10 @@ class LogEntry(SQLModel, table=True):
     message: str
     created_at: datetime = Field(default_factory=datetime.now)
 
+    @property
+    def formatted_created_at(self) -> str:
+        return self.created_at.strftime("%Y-%m-%d %H:%M")
+
 class UpdateLogEntry(SQLModel):
     title: str | None = None
     message: str | None = None

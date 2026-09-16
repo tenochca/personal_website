@@ -3,8 +3,10 @@
 {% block nav %}
 <p>
     ANALYZING..<br>
+    LOG ID: {{ log.id }} <br>
     FILE TYPE: log file <br>
     TOPIC: {{ log.title }} <br>
+    DATE: {{ log.formatted_created_at }}
 </p>
 <div class="ascii-line" id="ascii-line"></div>
 {% endblock %}

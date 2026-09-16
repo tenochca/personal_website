@@ -22,7 +22,7 @@
 <div class="project-nodes">
     <!--<a href="/logs/new" class="node">create log</a>-->
     {% for log in log_messages %}
-        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.created_at }} {{log.title}}</a>
+        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.formatted_created_at }} {{log.title}}</a>
     {% endfor %}
 </div>
 {% endblock %}
