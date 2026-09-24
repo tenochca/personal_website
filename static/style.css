@@ -117,10 +117,6 @@ body {
     width: 64px;
   }
 
-  .nav {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
 
   .project-nodes {
     grid-template-columns: 1fr;
@@ -146,12 +142,6 @@ body {
   }
 }
 
-.nav {
-  margin-top: 30px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 15px;
-}
 
 .node {
   position: relative;
@@ -329,7 +319,7 @@ body {
     border:1px solid var(--border);
     border-radius: 4px;
     overflow: hidden;
-    background: rgba(57, 255, 20, 0.015)
+    background: rgba(57, 255, 20, 0.015);
 }
 
 .list-entry {
@@ -378,4 +368,46 @@ body {
 @media (max-width: 520px) {
   .log-entry { flex-wrap: wrap; }
   .log-entry .timestamp { min-width: auto; }
+}
+
+.navbar a {
+  display: inline-flex;
+  align-items: center;
+  color: var(--green-muted);
+  border: 1px solid var(--border);
+  padding: 0.65rem 1rem;
+  font-family: inherit;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  margin-bottom: 25px;
+}
+
+.navbar a:hover {
+  color: var(--green-bright);
+  border-color: var(--green-bright);
+  background: rgba(57, 255, 20, 0.08);
+}
+
+/* Blinking cursor after the label on hover */
+.navbar a:hover::after {
+  content: "_";
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Current page indicator */
+.navbar a.active {
+  background: var(--green-bright);
+  color: var(--bg);
+  border-color: var(--green-bright);
+}
+
+/* Active items stay filled, no hover cursor blink needed */
+.navbar a.active:hover::after {
+  content: "";
+  animation: none;
 }
