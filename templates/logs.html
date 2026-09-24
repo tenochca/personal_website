@@ -19,10 +19,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="project-nodes">
+<div class="list">
     <!--<a href="/logs/new" class="node">create log</a>-->
     {% for log in log_messages %}
-        <a href="logs/{{ log.id }}" class="node project-node"> {{  log.formatted_created_at }} {{log.title}}</a>
+    <a href="logs/{{ log.id }}" class="list-entry">
+        <span class="prompt">&gt;</span>
+        <span class="timestamp">{{ log.formatted_created_at }}</span>
+        <span class="title">{{ log.title }}</span>
+    </a>
     {% endfor %}
 </div>
 {% endblock %}

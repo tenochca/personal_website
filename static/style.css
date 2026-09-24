@@ -3,7 +3,12 @@
 }
 
 :root {
-  --cyber-blue: #41FF00;
+    --bg: #0d1117;
+    --border: #1e3a1e;
+    --green-dim: #4a9d4a;
+    --green-bright: #41FF00;
+    --green-muted: #6b8f6b;
+    --text-light: #c9f7c9;
 }
 
 body {
@@ -309,7 +314,7 @@ body {
 
 .project-node:focus-visible,
 .project-modal__close:focus-visible {
-  outline: 1px dashed var(--cyber-blue);
+  outline: 1px dashed var(--green-bright);
   outline-offset: 2px;
 }
 
@@ -318,4 +323,59 @@ body {
     overflow: hidden;
     width: 100%;
     font-family: Consolas, "Courier New", monospace;
+}
+
+.list {
+    border:1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    background: rgba(57, 255, 20, 0.015)
+}
+
+.list-entry {
+    display: flex;
+    align-items:baseline;
+    gap: 1rem;
+    padding: 0.65rem 1rem;
+    border-bottom: 1px solid var(--border);
+    text-decoration: none;
+    font-family: Consolas, "Courier New", monospace;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.list-entry:last-child {border-bottom: none; }
+
+.list-entry .prompt {
+    color: var(--green-bright);
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.list-entry .timestamp {
+    color: var(--green-muted);
+    flex-shrink: 0;
+    min-width: 150px;
+    font-size: 0.85;
+}
+
+.list-entry .title {
+    color: var(--green-bright);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.list-entry:hover {
+    background: rgba(57, 255, 20, 0.08);
+    cursor: pointer;
+}
+
+.log-entry:hover .timestamp { color: var(--green-bright); }
+.log-entry:hover .prompt { opacity: 1; }
+.log-entry:hover .title { color: #ffffff; }
+
+/* Stack timestamp above title on narrow screens */
+@media (max-width: 520px) {
+  .log-entry { flex-wrap: wrap; }
+  .log-entry .timestamp { min-width: auto; }
 }
