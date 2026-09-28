@@ -154,7 +154,7 @@ body {
     width: 100%;
     text-align: left;
     background: transparent;
-    color: var(--green-muted);
+    color: var(--green-dim);
     border: none;
     border-bottom: 1px solid var(--border);
     padding: 0.65rem 1rem;
@@ -171,6 +171,7 @@ body {
 
   .project-node:hover {
       background: rgba(57, 255, 20, 0.08);
+      color: var(--green-bright);
       cursor: pointer;
   }
 
@@ -284,7 +285,7 @@ body {
 }
 
 .list-entry .title {
-    color: var(--green-bright);
+    color: var(--green-dim);
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -293,11 +294,12 @@ body {
 .list-entry:hover {
     background: rgba(57, 255, 20, 0.08);
     cursor: pointer;
+    color: var(--green-bright)
 }
 
 .log-entry:hover .timestamp { color: var(--green-bright); }
 .log-entry:hover .prompt { opacity: 1; }
-.log-entry:hover .title { color: #ffffff; }
+.log-entry:hover .title { color: var(--green-bright) }
 
 /* Stack timestamp above title on narrow screens */
 @media (max-width: 520px) {
