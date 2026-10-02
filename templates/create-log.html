@@ -1,9 +1,35 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="/logs" method="post">
+<form id="createForm" action="/logs" method="post">
     <textarea name="log_title" required placeholder="Enter your log title here..."></textarea>
     <textarea name="log_message" required placeholder="Enter your log message here..."></textarea><br>
     <button type="submit">Log It!</button>
 </form>
+
+<form id="deleteForm" action="/logs">
+    <textarea name="log_id" required placeholder="Enter your log id here to delete..."></textarea>
+    <button type="button" onclick="deleteLog()">Delete</button>
+</form>
+{% endblock %}
+
+{% block script %}
+
+<script>
+async function deleteLog() {
+    const logId = document.querySelector('textarea[name="log_id"]').value
+    if (!confirm("Delete this log?")) return;
+
+    const response = await fetch(`/logs/${logId}`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        window.location.href = "/logs";
+    } else {
+        alert("Failed to delete log.");
+    }
+}
+</script>
+
 {% endblock %}
