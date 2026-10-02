@@ -56,10 +56,10 @@ async def logs_post(request: Request, log_title:str = Form(..., min_length=1, ma
     session.refresh(entry)
     return RedirectResponse(url="/logs", status_code=status.HTTP_303_SEE_OTHER)
 
-@app.get("/logs/new", response_class=HTMLResponse)
-def log_new(request: Request, username: str = Depends(get_current_user)):
+@app.get("/logs/admin", response_class=HTMLResponse)
+def admin(request: Request, username: str = Depends(get_current_user)):
     "Renders the form to create a new log entry"
-    return templates.TemplateResponse(request, "create-log.html")
+    return templates.TemplateResponse(request, "admin.html")
 
 @app.delete("/logs/{id}")
 def log_delete(id: str, session: Session = Depends(get_session), username: str = Depends(get_current_user)):
