@@ -8,8 +8,14 @@
 </form>
 
 <form id="deleteForm" action="/logs">
-    <textarea name="log_id" required placeholder="Enter your log id here to delete..."></textarea>
+    <textarea name="log_id" required placeholder="Enter your log id here to delete..."></textarea><br>
     <button type="button" onclick="deleteLog()">Delete</button>
+</form>
+
+<form id="editForm" action="/logs">
+    <textarea name="log_title" required placeholder="Enter new title here..."></textarea>
+    <textarea name="log_message" required placeholder="Enter new message here..."></textarea><br>
+    <button type="submit">Commit Edit</button>
 </form>
 {% endblock %}
 
