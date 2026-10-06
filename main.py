@@ -90,5 +90,5 @@ def update_log(id: str, log: UpdateLogEntry, session: Session = Depends(get_sess
     session.add(log_db)
     session.commit()
     session.refresh(log_db)
-    RedirectResponse(url=f"/logs{id}", status_code=status.HTTP_303_SEE_OTHER)
+    RedirectResponse(url=f"/logs/{id}", status_code=status.HTTP_303_SEE_OTHER)
     return log_db

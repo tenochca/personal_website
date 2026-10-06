@@ -13,17 +13,41 @@
 </form>
 
 <form id="editForm" action="/logs">
+    <textarea name="log_id" required placeholder="Enter log id..."></textarea>
     <textarea name="log_title" required placeholder="Enter new title here..."></textarea>
     <textarea name="log_message" required placeholder="Enter new message here..."></textarea><br>
-    <button type="submit">Commit Edit</button>
+    <button type="submit">submit</button>
 </form>
 {% endblock %}
 
 {% block script %}
 
 <script>
+
+document.getElementById("editForm").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const logId = form.elements["log_id"].value.trim();
+
+    const response = await fetch(`/logs/${logId}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            title: form.elements["log_title"].value,
+            message: form.elements["log_message"].value,
+        }),
+    });
+
+    if (response.ok) {
+        window.location.href = "/logs";
+    } else {
+        alert("Failed to update log.");
+    }
+});
+
+
 async function deleteLog() {
-    const logId = document.querySelector('textarea[name="log_id"]').value
+    const logId = document.querySelector('#deleteForm textarea[name="log_id"]').value
     if (!confirm("Delete this log?")) return;
 
     const response = await fetch(`/logs/${logId}`, {
