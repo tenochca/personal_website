@@ -271,6 +271,10 @@ body {
 
 .list-entry:last-child {border-bottom: none; }
 
+.list-entry:visited {
+
+}
+
 .list-entry .prompt {
     color: var(--green-bright);
     opacity: 0.5;
@@ -294,6 +298,10 @@ body {
 .list-entry:hover {
     background: rgba(57, 255, 20, 0.08);
     cursor: pointer;
+    color: var(--green-bright)
+}
+
+.list-entry:hover .title {
     color: var(--green-bright)
 }
 
