@@ -271,10 +271,6 @@ body {
 
 .list-entry:last-child {border-bottom: none; }
 
-.list-entry:visited {
-
-}
-
 .list-entry .prompt {
     color: var(--green-bright);
     opacity: 0.5;
