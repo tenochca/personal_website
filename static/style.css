@@ -286,14 +286,15 @@ body {
 
 .list-entry .title {
     color: var(--green-dim);
-    overflow: hidden;
+    overflow: auto;
     text-overflow: ellipsis;
     white-space: nowrap;
 }
 
 .list-entry .id {
     color: var(--green-dim);
-
+    margin-left: auto;
+    overflow: auto;
 }
 
 .list-entry:hover {
