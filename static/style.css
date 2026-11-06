@@ -291,6 +291,11 @@ body {
     white-space: nowrap;
 }
 
+.list-entry .id {
+    color: var(--green-dim);
+
+}
+
 .list-entry:hover {
     background: rgba(57, 255, 20, 0.08);
     cursor: pointer;
@@ -301,9 +306,10 @@ body {
     color: var(--green-bright)
 }
 
-.log-entry:hover .timestamp { color: var(--green-bright); }
-.log-entry:hover .prompt { opacity: 1; }
-.log-entry:hover .title { color: var(--green-bright) }
+.list-entry:hover .id{
+    color: var(--green-bright)
+}
+
 
 /* Stack timestamp above title on narrow screens */
 @media (max-width: 520px) {
